@@ -4,14 +4,17 @@ import time
 import streamlit as st
 
 from sistema import seguridad
+from . import estilo
 from . import utilidades as u
 
 
 def mostrar():
     _, centro, _ = st.columns([1, 1.3, 1])
     with centro:
-        st.title("🏥 Control de Pacientes")
-        st.caption("Servicio de Gastroenterología · Hospital Nacional Arzobispo Loayza")
+        estilo.logo_login()
+        st.markdown("<h1 style='text-align:center;margin-bottom:0'>Control de Pacientes</h1>"
+                    "<p style='text-align:center;color:#5B6785'>Servicio de Gastroenterología · "
+                    "Hospital Nacional Arzobispo Loayza</p>", unsafe_allow_html=True)
         u.mostrar_avisos()
         # st.form agrupa los campos: la app no hace nada hasta que se pulsa "Ingresar"
         with st.form("form_login"):

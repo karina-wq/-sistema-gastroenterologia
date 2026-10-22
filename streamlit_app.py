@@ -26,7 +26,10 @@ st.set_page_config(page_title="Control de Pacientes · Gastroenterología", page
                    layout="wide", initial_sidebar_state="expanded")
 
 from paginas import administracion, agenda, alertas, atencion, cuenta, indicadores, inicio, login, pacientes
+from paginas import estilo
 from paginas import utilidades as u
+
+estilo.aplicar()
 
 # --- 1. ¿Está configurada la conexión con la base de datos? -------------------
 if not u.preparar_secretos():
@@ -66,9 +69,9 @@ if st.session_state.get("pagina") not in permitidas:
     st.session_state.pop("pagina", None)
 
 with st.sidebar:
-    st.markdown("### 🏥 Gastroenterología")
-    st.caption("Hospital Nacional Arzobispo Loayza")
-    st.markdown(f"**{usuario['nombre_completo']}**  \n{usuario['rol']}")
+    estilo.logo_barra_lateral()
+    st.markdown("### Gastroenterología")
+    st.markdown(f"**{usuario['nombre_completo']}**  \n{estilo.rol_txt(usuario['rol'])}")
     pagina = st.radio("Menú", permitidas, key="pagina", label_visibility="collapsed")
     st.divider()
     if u.hay_datos_simulados():

@@ -7,6 +7,7 @@ import streamlit as st
 from sistema import clinico
 from sistema.base import hoy
 from . import correo
+from . import estilo
 from . import utilidades as u
 
 ESTADOS = ["Todos", "programada", "asistio", "inasistio", "reprogramada", "cancelada"]
@@ -52,7 +53,7 @@ def citas(usuario):
                 {"fecha_programada": "Fecha", "hora_programada": "Hora", "codigo": "Código", "paciente": "Paciente",
                  "telefono": "Teléfono", "medico": "Médico", "estado": "Estado"})
     df["Estado"] = df["Estado"].map(lambda e: ETIQUETA.get(e, e))
-    st.dataframe(df, hide_index=True, width="stretch")
+    st.dataframe(estilo.pintar_estados(df), hide_index=True, width="stretch")
     st.caption(f"{len(filas)} citas.")
 
     st.markdown("##### Acciones sobre una cita")
